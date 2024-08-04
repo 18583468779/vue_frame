@@ -9,11 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^22.1.0",
     "vue": "^3.4.31",
     "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
+    "path": "^0.12.7",
     "typescript": "^5.2.2",
     "vite": "^5.3.4",
     "vue-tsc": "^2.0.24"
