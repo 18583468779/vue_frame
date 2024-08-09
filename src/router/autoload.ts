@@ -29,11 +29,13 @@ function getChildRoutes(route: RouteRecordRaw) {
 
 function getRouteByModule(file: string, module: any) {
   const name = file.replace(/.+layouts\/|.+views\/|\.vue/gi, "");
-  return {
+  const route = {
     name: name?.replace("/", "-"),
     path: `/${name}`,
     component: module.default,
   } as RouteRecordRaw;
+
+  return Object.assign(route, module.default?.route); // 自定义路由
 }
 
 export default getRoutes();
