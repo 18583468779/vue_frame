@@ -4,7 +4,6 @@ import { alias } from "./vite/alias";
 import setupPlugins from "./vite/plugins";
 
 export default ({ command, mode }: ConfigEnv) => {
-  console.log(command, mode);
   const isBuild = command == "build"; // 编译模式
   const root = process.cwd(); // 当前文件路径
   const env = parseEnv(loadEnv(mode, root));

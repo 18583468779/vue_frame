@@ -5,3 +5,13 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+
+interface ImportMetaEnv extends ViteEnv {
+  // 更多环境变量...
+  VITE_SOME_KEY: number;
+  VITE_ROUTE_AUTOLOAD: boolean;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
