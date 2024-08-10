@@ -1,7 +1,7 @@
-import { ConfigEnv, defineConfig, loadEnv } from "vite";
-import vue from "@vitejs/plugin-vue";
+import { ConfigEnv, loadEnv } from "vite";
 import { parseEnv } from "./vite/util";
 import { alias } from "./vite/alias";
+import setupPlugins from "./vite/plugins";
 
 export default ({ command, mode }: ConfigEnv) => {
   console.log(command, mode);
@@ -9,7 +9,7 @@ export default ({ command, mode }: ConfigEnv) => {
   const root = process.cwd(); // 当前文件路径
   const env = parseEnv(loadEnv(mode, root));
   return {
-    plugins: [vue()],
+    plugins: setupPlugins(isBuild, env),
     resolve: {
       alias,
     },
