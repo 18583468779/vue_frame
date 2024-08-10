@@ -7,9 +7,7 @@ export default ({ command, mode }: ConfigEnv) => {
   console.log(command, mode);
   const isBuild = command == "build"; // 编译模式
   const root = process.cwd(); // 当前文件路径
-  const env = loadEnv(mode, root);
-  const envs = parseEnv(env);
-  console.log(envs);
+  const env = parseEnv(loadEnv(mode, root));
   return {
     plugins: [vue()],
     resolve: {
