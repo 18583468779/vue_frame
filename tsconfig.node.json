@@ -9,5 +9,10 @@
     "strict": true,
     "noEmit": true
   },
-  "include": ["vite.config.ts", "vite/**/*.ts", "mock/**/*.ts"] // 添加此行
+  "include": [
+    "vite.config.ts",
+    "vite/**/*.ts",
+    "mock/**/*.ts",
+    "types/**/*.d.ts"
+  ] // 添加此行
 }
