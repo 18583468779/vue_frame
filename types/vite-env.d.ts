@@ -15,3 +15,10 @@ interface ImportMetaEnv extends ViteEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+interface ResponseResult<T> {
+  code: number;
+  message: string;
+  type: "success" | "error";
+  data: T;
+}
