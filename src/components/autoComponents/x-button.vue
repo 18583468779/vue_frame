@@ -8,5 +8,10 @@
 // 自动注册的全局组件
 defineProps(['text']);
 </script>
+<script lang="ts">
+export default {
+    __name: 'x-button' // 自动注册组件需要定义这个属性
+}
+</script>
 
 <style lang="scss" scoped></style>
