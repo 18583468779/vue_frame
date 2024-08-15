@@ -22,3 +22,7 @@ interface ResponseResult<T> {
   type: "success" | "error";
   data: T;
 }
+declare module "*.json" {
+  const value: any;
+  export default value;
+}
