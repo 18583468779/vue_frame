@@ -20,13 +20,24 @@
         </div>
         <div class="flex w-full lg:w-1/2 justify-center items-center bg-white space-y-8">
             <div class="w-full px-8 md:px-32 lg:px-24 ">
-                <!-- <form class=" rounded-md shadow-2xl p-5" @submit.prevent="handleOnSubmit">
+                <v.Form class=" rounded-md shadow-2xl p-5" @submit.prevent="handleOnSubmit">
                     <h1 class="text-gray-800 font-bold text-2xl mb-1">您好!</h1>
                     <p class="text-sm font-normal text-gray-600 mb-8">欢迎回来</p>
-                    <xInput v-bind="field" placeholder="请输入邮箱或电话" v-model="formVal.account" />
-                    <span class="text-red-600">{{ errorMessage }}</span>
-                    <xInput class="mt-6" placeholder="请输入密码" type="password" v-model="formVal.password" />
-                    <xInput class="mt-6" placeholder="请确认密码" type="password" v-model="formVal.passwordConfirm" />
+                    <v.Field name="account" label="账号" :validate-on-input="true"
+                        :rules="{ email: true, required: true }" v-slot="{ field }">
+                        <xInput v-bind="field" placeholder="请输入邮箱或电话" v-model="formVal.account" />
+                    </v.Field>
+                    <v.ErrorMessage name="account" class="text-red-600" />
+                    <v.Field name="password" label="密码" :validate-on-input="true" :rules="{ required: true }"
+                        v-slot="{ field }">
+                        <xInput class="mt-6" v-bind="field" placeholder="请输入密码" v-model="formVal.password" />
+                    </v.Field>
+                    <v.ErrorMessage name="password" class="text-red-600" />
+                    <v.Field name="passwordConfirm" label="确认密码" :validate-on-input="true"
+                        :rules="{ confirmed: true, required: true }" v-slot="{ field }">
+                        <xInput class="mt-6" v-bind="field" placeholder="请确认密码" v-model="formVal.passwordConfirm" />
+                    </v.Field>
+                    <v.ErrorMessage name="passwordConfirm" class="text-red-600" />
                     <xButton text="注册"></xButton>
                     <div class="flex justify-between mt-4">
                         <span
@@ -36,17 +47,7 @@
                         <a href="#"
                             class="text-sm ml-2 text-blue-100 hover:text-blue-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all">已有账号</a>
                     </div>
-                </form> -->
-                <div class=" bg-dark-500   pl-6">
-                    <Form @submit="handleOnSubmit">
-                        <Field name="account" label="账号" :validate-on-input="true"
-                            :rules="{ email: true, required: true }" v-slot="{ field }">
-                            <xInput v-bind="field" placeholder="请输入邮箱或电话" v-model="formVal.account" />
-                        </Field>
-                        <ErrorMessage name="account" />
-                        <button class="bg-indigo-500">点击</button>
-                    </Form>
-                </div>
+                </v.Form>
             </div>
         </div>
     </div>
@@ -55,16 +56,7 @@
 <script lang="ts" setup>
 
 import { reactive } from 'vue';
-import { Field, Form, ErrorMessage, defineRule, configure } from 'vee-validate';
-import { required, confirmed, email, min, max } from '@vee-validate/rules';
-import { localize } from '@vee-validate/i18n';
-import zh_CN from '@vee-validate/i18n/dist/locale/zh_CN.json'
-defineRule('required', required);
-defineRule('email', email);
-
-configure({
-    generateMessage: localize('zh_CN', zh_CN)
-})
+import v from '@/plugins/validate'
 const formVal = reactive({
     account: '',
     password: '',
