@@ -19,14 +19,18 @@ export default [
     },
   },
   {
-    url: "/api/post",
+    url: "/api/login",
     method: "post",
     timeout: 2000,
-    response: {
-      code: 0,
-      data: {
-        name: "vben",
-      },
+    response: () => {
+      return {
+        code: 200,
+        message: "登录成功",
+        type: "success",
+        data: {
+          token: "asdasqqwe123123",
+        },
+      };
     },
   },
   {

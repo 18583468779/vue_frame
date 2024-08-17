@@ -20,7 +20,7 @@
         </div>
         <div class="flex w-full lg:w-1/2 justify-center items-center bg-white space-y-8">
             <div class="w-full px-8 md:px-32 lg:px-24 ">
-                <v.Form class=" rounded-md shadow-2xl p-5" @submit.prevent="handleOnSubmit" :validation-schema="schema">
+                <v.Form class=" rounded-md shadow-2xl p-5" @submit="handleOnSubmit" :validation-schema="schema">
                     <h1 class="text-gray-800 font-bold text-3xl mb-1 text-center">会员注册</h1>
                     <p class="text-sm font-normal text-gray-600 mb-10"></p>
                     <v.Field name="account" label="账号" :validate-on-input="true" v-slot="{ field }">
@@ -62,19 +62,22 @@
 import { reactive } from 'vue';
 import v from '@/plugins/validate'
 import yup from '@/plugins/validate/yup';
+import { login } from '@/api/user'
+
 const formVal = reactive({
     account: '',
     password: '',
     passwordConfirm: ''
 });
 
-const handleOnSubmit = () => {
-    console.log('formVal', formVal)
+const handleOnSubmit = async () => {
+    await login(formVal)
+
 }
 
 // 验证规则
 const schema = yup.object({
-    account: yup.string().required('请填写账号').email().label('账号'),
+    account: yup.string().required('请填写账号').email('邮箱格式错误').label('账号'),
     password: yup
         .string()
         .required('请输入密码')
