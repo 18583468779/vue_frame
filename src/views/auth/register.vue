@@ -20,22 +20,21 @@
         </div>
         <div class="flex w-full lg:w-1/2 justify-center items-center bg-white space-y-8">
             <div class="w-full px-8 md:px-32 lg:px-24 ">
-                <v.Form class=" rounded-md shadow-2xl p-5" @submit.prevent="handleOnSubmit">
+                <v.Form class=" rounded-md shadow-2xl p-5" @submit.prevent="handleOnSubmit" :validation-schema="schema">
                     <h1 class="text-gray-800 font-bold text-2xl mb-1">您好!</h1>
                     <p class="text-sm font-normal text-gray-600 mb-8">欢迎回来</p>
-                    <v.Field name="account" label="账号" :validate-on-input="true"
-                        :rules="{ email: true, required: true }" v-slot="{ field }">
+                    <v.Field name="account" label="账号" :validate-on-input="true" v-slot="{ field }">
                         <xInput v-bind="field" placeholder="请输入邮箱或电话" v-model="formVal.account" />
                     </v.Field>
                     <v.ErrorMessage name="account" class="text-red-600" />
-                    <v.Field name="password" label="密码" :validate-on-input="true" :rules="{ required: true }"
-                        v-slot="{ field }">
+                    <v.Field name="password" label="密码" v-slot="{ field }">
                         <xInput type="password" class="mt-6" v-bind="field" placeholder="请输入密码"
                             v-model="formVal.password" />
                     </v.Field>
                     <v.ErrorMessage name="password" class="text-red-600" />
-                    <v.Field name="passwordConfirm" label="确认密码" :validate-on-input="true"
-                        :rules="{ confirmed: formVal.password, required: true }" v-slot="{ field }">
+                    <v.Field name="passwordConfirm" label="确认密码" :rules="{
+                        required: true
+                    }" v-slot="{ field }">
                         <xInput type="password" class="mt-6" v-bind="field" placeholder="请确认密码"
                             v-model="formVal.passwordConfirm" />
                     </v.Field>
@@ -59,6 +58,7 @@
 
 import { reactive } from 'vue';
 import v from '@/plugins/validate'
+import yup from '@/plugins/validate/yup';
 const formVal = reactive({
     account: '',
     password: '',
@@ -68,6 +68,21 @@ const formVal = reactive({
 const handleOnSubmit = () => {
     console.log('formVal', formVal)
 }
+
+// 验证规则
+const schema = yup.object({
+    account: yup.string().required('请填写账号').email().label('账号'),
+    password: yup
+        .string()
+        .required('请输入密码')
+        .min(8, '密码至少8位')
+        .max(32, '密码最多32位'),
+    passwordConfirm: yup
+        .string()
+        .required('请再次输入密码')
+        .oneOf([yup.ref('password'), null], '两次输入的密码不一致'),
+
+})
 
 </script>
 
