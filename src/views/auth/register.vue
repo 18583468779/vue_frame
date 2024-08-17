@@ -21,8 +21,8 @@
         <div class="flex w-full lg:w-1/2 justify-center items-center bg-white space-y-8">
             <div class="w-full px-8 md:px-32 lg:px-24 ">
                 <v.Form class=" rounded-md shadow-2xl p-5" @submit.prevent="handleOnSubmit" :validation-schema="schema">
-                    <h1 class="text-gray-800 font-bold text-2xl mb-1">您好!</h1>
-                    <p class="text-sm font-normal text-gray-600 mb-8">欢迎回来</p>
+                    <h1 class="text-gray-800 font-bold text-3xl mb-1 text-center">会员注册</h1>
+                    <p class="text-sm font-normal text-gray-600 mb-10"></p>
                     <v.Field name="account" label="账号" :validate-on-input="true" v-slot="{ field }">
                         <xInput v-bind="field" placeholder="请输入邮箱或电话" v-model="formVal.account" />
                     </v.Field>
@@ -40,13 +40,16 @@
                     </v.Field>
                     <v.ErrorMessage name="passwordConfirm" class="text-red-600" />
                     <xButton text="注册"></xButton>
+                    <div class="flex justify-center mt-5">
+                        <i class="fa-brands fa-weixin bg-green-600 text-white rounded-full p-1 cursor-pointer"></i>
+                    </div>
                     <div class="flex justify-between mt-4">
                         <span
-                            class="text-sm ml-2 text-blue-100 hover:text-blue-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all">忘记密码
+                            class="text-sm ml-2 text-blue-400 hover:text-blue-800 cursor-pointer hover:-translate-y-1 duration-500 transition-all">忘记密码
                             ?</span>
 
                         <a href="#"
-                            class="text-sm ml-2 text-blue-100 hover:text-blue-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all">已有账号</a>
+                            class="text-sm ml-2 text-blue-400 hover:text-blue-800 cursor-pointer hover:-translate-y-1 duration-500 transition-all">已有账号</a>
                     </div>
                 </v.Form>
             </div>
