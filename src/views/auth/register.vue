@@ -30,12 +30,14 @@
                     <v.ErrorMessage name="account" class="text-red-600" />
                     <v.Field name="password" label="密码" :validate-on-input="true" :rules="{ required: true }"
                         v-slot="{ field }">
-                        <xInput class="mt-6" v-bind="field" placeholder="请输入密码" v-model="formVal.password" />
+                        <xInput type="password" class="mt-6" v-bind="field" placeholder="请输入密码"
+                            v-model="formVal.password" />
                     </v.Field>
                     <v.ErrorMessage name="password" class="text-red-600" />
                     <v.Field name="passwordConfirm" label="确认密码" :validate-on-input="true"
-                        :rules="{ confirmed: true, required: true }" v-slot="{ field }">
-                        <xInput class="mt-6" v-bind="field" placeholder="请确认密码" v-model="formVal.passwordConfirm" />
+                        :rules="{ confirmed: formVal.password, required: true }" v-slot="{ field }">
+                        <xInput type="password" class="mt-6" v-bind="field" placeholder="请确认密码"
+                            v-model="formVal.passwordConfirm" />
                     </v.Field>
                     <v.ErrorMessage name="passwordConfirm" class="text-red-600" />
                     <xButton text="注册"></xButton>

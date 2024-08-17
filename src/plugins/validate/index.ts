@@ -13,7 +13,6 @@ veeValidate.configure({
 
 //批量定义规则
 Object.keys(rules).forEach((key) => {
-  console.log(veeValidate);
   veeValidate.defineRule(key, rules[key]);
 });
 
