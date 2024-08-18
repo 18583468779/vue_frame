@@ -74,7 +74,7 @@ const handleOnSubmit = async () => {
             token, expire: 100
         });
         router.push({
-            name: 'user'
+            name: 'home'
         })
     }
 };
@@ -91,7 +91,7 @@ const schema = yup.object({
 </script>
 <script lang="ts">
 export default {
-    route: { name: 'login', meta: { auth: true } }, // 设置原信息
+    route: { name: 'login', meta: { auth: true, requiresAuth: false } }, // 设置原信息
 }
 </script>
 <style>

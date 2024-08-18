@@ -33,6 +33,7 @@ function getRouteByModule(file: string, module: any) {
     name: name?.replace("/", "-"),
     path: `/${name}`,
     component: module.default,
+    meta: { requiresAuth: true }, // 设置原信息，让页面只有登录之后才有查看的权限
   } as RouteRecordRaw;
 
   return Object.assign(route, module.default?.route); // 自定义路由
