@@ -91,7 +91,7 @@ const schema = yup.object({
 </script>
 <script lang="ts">
 export default {
-    route: { name: 'login' }
+    route: { name: 'login', meta: { auth: true } }, // 设置原信息
 }
 </script>
 <style>
