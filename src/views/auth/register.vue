@@ -63,6 +63,7 @@ import { reactive } from 'vue';
 import v from '@/plugins/validate'
 import yup from '@/plugins/validate/yup';
 import { login } from '@/api/user'
+import store from '@/utils/store';
 
 const formVal = reactive({
     account: '',
@@ -71,7 +72,14 @@ const formVal = reactive({
 });
 
 const handleOnSubmit = async () => {
-    await login(formVal)
+    const { data: { token }, code } = await login(formVal);
+    if (code == 200) {
+        alert('恭喜你，注册成功!');
+        store.set('token', {
+            token, expire: 100
+        });
+    }
+
 
 }
 
