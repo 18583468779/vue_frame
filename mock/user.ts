@@ -34,19 +34,15 @@ export default [
     },
   },
   {
-    url: "/api/text",
+    url: "/api/register",
     method: "post",
-    rawResponse: async (req, res) => {
-      let reqbody = "";
-      await new Promise((resolve) => {
-        req.on("data", (chunk) => {
-          reqbody += chunk;
-        });
-        req.on("end", () => resolve(undefined));
-      });
-      res.setHeader("Content-Type", "text/plain");
-      res.statusCode = 200;
-      res.end(`hello, ${reqbody}`);
+    timeout: 2000,
+    response: () => {
+      return {
+        code: 200,
+        message: "注册成功",
+        type: "success",
+      };
     },
   },
 ] as MockMethod[];

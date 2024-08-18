@@ -11,10 +11,14 @@
 <style lang="scss" scoped></style>
 
 <script>
+
 // 自定义路由
+
 export default {
     route: {
+        name: 'user',
         path: '/user'
     }
 }
+
 </script>
