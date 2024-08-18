@@ -21,7 +21,7 @@ export default [
   {
     url: "/api/login",
     method: "post",
-    timeout: 2000,
+    timeout: 100,
     response: () => {
       return {
         code: 200,

@@ -71,7 +71,7 @@ const handleOnSubmit = async () => {
     if (code == 200) {
         alert('恭喜你，登录成功!');
         store.set('token', {
-            token, expire: 100
+            token, expire: 1000
         });
         router.push({
             name: 'home'
