@@ -8,9 +8,7 @@
                     class="absolute flex h-32 w-full justify-center rounded-xl bg-cover">
                 <div
                     class="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-                    <img class="h-full w-full rounded-full"
-                        src='https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/avatar11.1060b63041fdffa5f8ef.png'
-                        alt="" />
+                    <img class="h-full w-full rounded-full" src='../../public/image/avatar.jpg' alt="" />
                 </div>
             </div>
             <div class="mt-16 flex flex-col items-center">
@@ -21,8 +19,8 @@
             </div>
 
             <div class="mt-6 flex gap-3">
-                <xButton text="后台管理" class="w-40 rounded-s" />
-                <xButton text="会员登录" class="w-40 rounded-s" />
+                <xButton text="后台管理" class="px-8 rounded-md" @click="handleToAdmin" />
+                <xButton text="会员登录" class="px-8 rounded-md" />
             </div>
         </div>
         <p class="font-normal text-navy-700 mt-20 mx-auto w-max">欢迎来到HtmlCode网
@@ -33,6 +31,15 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const handleToAdmin = () => {
+    // 跳转到后台管理页面
+    router.push({
+        name: 'user'
+    })
+}
 </script>
 
 
