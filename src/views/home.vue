@@ -37,7 +37,7 @@ const router = useRouter();
 const handleToAdmin = () => {
     // 跳转到后台管理页面
     router.push({
-        name: 'user'
+        name: 'admin'
     })
 }
 </script>
