@@ -1,4 +1,13 @@
 <template>
+    <!-- 标题 -->
+    <h1 class="text-2xl font-bold flex  gap-2">
+        <span style="font-size: 2rem;">
+            <span style="color: Mediumslateblue;">
+                <i class="fa-solid fa-keyboard"></i>
+            </span>
+        </span>
+        HtmlCodeAdmin
+    </h1>
     <!-- 菜单 -->
     <div class="left-container">
         <dl v-for="item in menuData" :key="item.id">
