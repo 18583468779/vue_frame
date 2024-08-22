@@ -59,6 +59,7 @@ import yup from '@/plugins/validate/yup';
 import { login } from '@/api/user'
 import store from '@/utils/store';
 import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus';
 
 const router = useRouter();
 
@@ -69,7 +70,10 @@ const formVal = reactive({
 const handleOnSubmit = async () => {
     const { data: { token }, code } = await login(formVal);
     if (code == 200) {
-        alert('恭喜你，登录成功!');
+        ElMessage({
+            message: '恭喜你，登录成功!',
+            type: 'success',
+        });
         store.set('token', {
             token, expire: 1000
         });
