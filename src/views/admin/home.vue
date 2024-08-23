@@ -20,10 +20,16 @@
         </el-card>
     </div>
 
+    <div class="mt-10">
+        <lineEcharts />
+    </div>
+
 </template>
 
 <script lang="ts" setup>
+import lineEcharts from '@/components/echarts/lineEcharts.vue'
 import { ref } from 'vue';
+
 
 interface ICard {
     title: string
@@ -66,7 +72,9 @@ const cards = ref<ICard[]>([
         total: 48920,
         totalTitle: '总评论',
     },
-])
+]);
+
+
 </script>
 <script lang="ts">
 

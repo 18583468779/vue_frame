@@ -24,6 +24,7 @@
     "@vee-validate/i18n": "4.5.10",
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.20",
+    "echarts": "^5.5.1",
     "lodash": "^4.17.21",
     "path": "^0.12.7",
     "postcss": "^8.4.41",
