@@ -1,32 +1,42 @@
 <template>
-    <!-- 标题 -->
-    <h1 class="text-2xl font-bold flex  gap-2">
-        <span style="font-size: 2rem;">
-            <span style="color: Mediumslateblue;">
-                <i class="fa-solid fa-keyboard"></i>
-            </span>
-        </span>
-        HtmlCodeAdmin
-    </h1>
-    <!-- 菜单 -->
-    <div class="left-container">
-        <dl v-for="item in menuData" :key="item.id">
-            <dt @click="handleSelect(item)">
-                <section>
-                    <i class="mr-2 text-lg" :class="item.icon"></i>
-                    <span class="text-lg">{{ item.title }}</span>
-                </section>
-                <section>
-                    <i class="fas fa-angle-down text-lg" :class="{ 'fa-angle-up': !item.active }"></i>
-                </section>
-            </dt>
-            <TransitionGroup name="slide">
-                <dd v-if="item.active" v-for="child in item.children" :key="child.id" class="hover"
-                    :class="{ active: child.active }">
-                    {{ child.title }}
-                </dd>
-            </TransitionGroup>
-        </dl>
+
+    <div class="bg-[#1D2434] w-1/6 pl-3 pr-3">
+        <div class="pt-6">
+
+            <!-- 标题 -->
+            <h1 class="text-2xl font-bold flex  gap-2">
+                <span style="font-size: 2rem;">
+                    <span style="color: Mediumslateblue;">
+                        <i class="fa-solid fa-keyboard"></i>
+                    </span>
+                </span>
+                HtmlCodeAdmin
+            </h1>
+            <!-- 菜单 -->
+            <div class="left-container">
+                <dl v-for="item in menuData" :key="item.id">
+                    <dt @click="handleSelect(item)">
+                        <section>
+                            <i class="mr-2 text-lg" :class="item.icon"></i>
+                            <span class="text-lg">{{ item.title }}</span>
+                        </section>
+                        <section>
+                            <i class="fas fa-angle-down text-lg duration-300"
+                                :class="{ 'rotate-180': !item.active }"></i>
+                        </section>
+                    </dt>
+                    <TransitionGroup name="slide">
+                        <div style="overflow-hidden" v-if="item.active">
+                            <dd v-for="child in item.children" :key="child.id" class="hover"
+                                :class="{ active: child.active }">
+                                {{ child.title }}
+                            </dd>
+                        </div>
+
+                    </TransitionGroup>
+                </dl>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -75,7 +85,8 @@ const handleSelect = (pmenu: IMenu) => {
 <style lang="scss" scoped>
 .left-container {
     dl {
-        @apply text-gray-300 text-sm;
+        @apply text-gray-300 text-sm overflow-hidden;
+        overflow: hidden;
 
         dt {
             @apply text-sm mt-6 flex justify-between cursor-pointer items-center;
@@ -98,49 +109,18 @@ const handleSelect = (pmenu: IMenu) => {
 
 .slide-enter-active,
 .slide-leave-active {
-    transition-property: transform, opacity, height;
-    transition-duration: 0.3s;
-    /* 调整动画时间 */
-    transition-timing-function: ease;
-    /* 调整动画速度曲线 */
+    transition: transform 0.2s ease-in-out;
 }
 
-.slide-enter-active {
-    animation: slideIn 0.3s ease;
-    /* 调整动画时间和速度曲线 */
+.slide-enter-from,
+.slide-leave-to {
+    transform: translateY(-100px);
+    opacity: 0;
 }
 
-.slide-leave-active {
-    animation: slideOut 0.3s ease;
-    /* 调整动画时间和速度曲线 */
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-200%);
-        opacity: 0;
-        height: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-        height: auto;
-    }
-}
-
-@keyframes slideOut {
-    from {
-        transform: translateY(0);
-        opacity: 1;
-        height: auto;
-    }
-
-    to {
-        transform: translateY(-200%);
-        opacity: 0;
-        /* 保持透明度 */
-        height: 0;
-    }
+.slide-enter-to,
+.slide-leave-from {
+    transform: translateX(0);
+    opacity: 1;
 }
 </style>
