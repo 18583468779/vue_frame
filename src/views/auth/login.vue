@@ -75,7 +75,7 @@ const handleOnSubmit = async () => {
             type: 'success',
         });
         store.set('token', {
-            token, expire: 1000
+            token, expire: 10000
         });
         router.push({
             name: 'home'

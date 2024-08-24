@@ -14,11 +14,11 @@
             </h1>
             <!-- 菜单 -->
             <div class="left-container">
-                <dl v-for="item in menuData" :key="item.id">
-                    <dt @click="handleSelect(item)">
+                <dl v-for="(item, index) in menuList" :key="index">
+                    <dt @click="store.handleChangeMenu(item)">
                         <section>
-                            <i class="mr-2 text-lg" :class="item.icon"></i>
-                            <span class="text-lg">{{ item.title }}</span>
+                            <i class="mr-2 text-lg" :class="item.meta.icon"></i>
+                            <span class="text-lg">{{ item.meta.title }}</span>
                         </section>
                         <section>
                             <i class="fas fa-angle-down text-lg duration-300"
@@ -26,13 +26,12 @@
                         </section>
                     </dt>
                     <TransitionGroup name="slide">
-                        <div style="overflow-hidden" v-if="item.active">
-                            <dd v-for="child in item.children" :key="child.id" class="hover"
-                                :class="{ active: child.active }">
-                                {{ child.title }}
+                        <div style="overflow-hidden" v-if="item.meta.isActive">
+                            <dd v-for="(child, childIdx) in item.children" :key="childIdx" class="hover"
+                                :class="{ active: child.meta.actives }">
+                                {{ child.meta.title }}
                             </dd>
                         </div>
-
                     </TransitionGroup>
                 </dl>
             </div>
@@ -42,46 +41,9 @@
 
 <script lang="ts" setup>
 import { useRouterStore } from '@/store/useRouterStore';
-import { ref } from 'vue';
 const store = useRouterStore();
-console.log(store)
-interface IMenuItem {
-    id: string
-    title: string
-    icon: string
-    active?: boolean
-}
+const menuList: any = store.routerList
 
-interface IMenu extends IMenuItem {
-    children?: IMenuItem[]
-}
-
-const menuData = ref<IMenu[]>([
-    {
-        id: '1', title: '基础信息', icon: 'fab fa-behance-square',
-        active: true, children: [
-            { id: '1', title: '定义菜单', icon: 'fa-solid fa-bars', active: true },
-            { id: '2', title: '数据字典', icon: 'fa-regular fa-cube' },
-        ]
-    },
-    {
-        id: '2', title: '评论管理', icon: 'fab fa-behance-square', children: [
-            { id: '1', title: '定义菜单', icon: 'fa-solid fa-bars' },
-            { id: '2', title: '数据字典', icon: 'fa-regular fa-cube' },
-        ]
-    },
-]);
-const handleReset = () => {
-    menuData.value.forEach((item: IMenu) => {
-        item.active = false;
-        item.children?.forEach(m => m.active = false)
-    })
-}
-
-const handleSelect = (pmenu: IMenu) => {
-    handleReset();
-    pmenu.active = true;
-}
 </script>
 
 <style lang="scss" scoped>

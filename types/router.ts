@@ -9,7 +9,11 @@ export {};
 declare module "vue-router" {
   interface RouteMeta {
     // 是可选的
-    auth?: boolean;
-    requiresAuth?: boolean;
+    auth?: boolean; // 设置为true,当前页面不需要需要登录
+    requiresAuth?: boolean; // 设置为true,当前页面需要登录之后才能访问
+    isMenu?: boolean; // 设置为true，可设置后台页面菜单
+    isActive?: boolean; // 是否选中当前菜单
+    title?: string; // 菜单的名称
+    icon?: string; // 一级菜单的图标
   }
 }
