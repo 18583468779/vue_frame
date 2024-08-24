@@ -41,8 +41,10 @@
 </template>
 
 <script lang="ts" setup>
+import { useRouterStore } from '@/store/useRouterStore';
 import { ref } from 'vue';
-
+const store = useRouterStore();
+console.log(store)
 interface IMenuItem {
     id: string
     title: string

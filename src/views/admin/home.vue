@@ -30,7 +30,6 @@
 import lineEcharts from '@/components/echarts/lineEcharts.vue'
 import { ref } from 'vue';
 
-
 interface ICard {
     title: string
     price: number
