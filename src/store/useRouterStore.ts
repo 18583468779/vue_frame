@@ -19,10 +19,16 @@ export const useRouterStore = defineStore("routerStore", () => {
     },
   });
   const handleChangeMenu = (pMenu: RouteRecordRaw) => {
+    // 父菜单的展开缩放
     // 重置菜单
     routerList.value = false;
     // 菜单切换
     pMenu.meta!.isActive = true;
   };
-  return { router, routerList, handleChangeMenu };
+
+  const handleChildChangeMenu = (cMenu: RouteRecordRaw) => {
+    // 子菜单的选中
+    cMenu.meta!.isActive = true;
+  };
+  return { router, routerList, handleChangeMenu, handleChildChangeMenu };
 });

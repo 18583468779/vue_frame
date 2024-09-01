@@ -11,7 +11,7 @@
             <section
                 class="group-hover:block absolute top-full bg-white shadow-sm px-3 whitespace-nowrap border rounded-sm hidden">
                 <div class="word">
-                    <a class="fas fa-ad text-gray-600"></a>
+                    <a class="fa-regular fa-user text-gray-600"></a>
                     <span>个人中心</span>
                 </div>
                 <div class="word" @click="handleToPage('home')">
@@ -36,14 +36,11 @@
 
 <script lang="ts" setup>
 import { useUserStore } from '@/store/useUserStore';
-import { useRouter } from 'vue-router';
+import { handleToPage } from '@/utils/commonFunc';
 const { useInfoState, handleRemoveUserInfo } = useUserStore();
 
-const router = useRouter();
 
-const handleToPage = (name: string) => {
-    router.push({ name: name })
-}
+
 </script>
 
 

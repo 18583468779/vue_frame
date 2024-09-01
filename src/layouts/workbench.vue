@@ -1,11 +1,9 @@
 <template>
-    <div>
-        <router-view />
-    </div>
+    <Entry />
 </template>
 
 <script lang="ts" setup>
-
+import Entry from './entry.vue';
 </script>
 <script lang="ts">
 export default {

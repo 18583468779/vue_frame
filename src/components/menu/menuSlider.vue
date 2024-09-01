@@ -27,8 +27,8 @@
                     </dt>
                     <TransitionGroup name="slide">
                         <div style="overflow-hidden" v-if="item.meta.isActive">
-                            <dd v-for="(child, childIdx) in item.children" :key="childIdx" class="hover"
-                                :class="{ active: child.meta.actives }">
+                            <dd v-for="(child, childIdx) in item.children" :key="childIdx" class="hover" handleToPage
+                                :class="{ active: child.meta.isActive }" @click=" handleClick(child.name, child)">
                                 {{ child.meta.title }}
                             </dd>
                         </div>
@@ -41,9 +41,20 @@
 
 <script lang="ts" setup>
 import { useRouterStore } from '@/store/useRouterStore';
-const store = useRouterStore();
-const menuList: any = store.routerList
+import { RouteRecordRaw } from 'vue-router';
+import { useRouter } from "vue-router";
 
+const store = useRouterStore();
+const menuList: any = store.routerList;
+const router = useRouter();
+
+console.log('menuList', menuList)
+
+const handleClick = (name: string, cMenu: RouteRecordRaw) => {
+    router.push({ name: name });
+    store.handleChildChangeMenu(cMenu);
+
+}
 </script>
 
 <style lang="scss" scoped>
