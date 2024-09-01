@@ -4,8 +4,13 @@
         <div class=" bg-[#F1F5F9]  flex-1">
             <navBar />
             <historyLink class="hidden md:block" />
-            <div class="m-3 p-5 bg-white">
-                <router-view></router-view>
+            <div class="p-3 relative  ">
+                <router-view #default="{ Component }">
+                    <Transition appear class="animate__animated" enter-active-class="animate__fadeInRight"
+                        leave-active-class="animate__fadeOutLeft">
+                        <component :is="Component" class="absolute w-full" />
+                    </Transition>
+                </router-view>
             </div>
         </div>
     </div>

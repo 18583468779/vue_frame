@@ -38,9 +38,6 @@
 import { useUserStore } from '@/store/useUserStore';
 import { handleToPage } from '@/utils/commonFunc';
 const { useInfoState, handleRemoveUserInfo } = useUserStore();
-
-
-
 </script>
 
 
