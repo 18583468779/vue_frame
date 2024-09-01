@@ -13,7 +13,14 @@ import Entry from './entry.vue';
 export default {
     route: {
         name: 'admin',
-        path: '/admin'
+        path: '/admin',
+        meta: {
+            isMenu: true,
+            requiresAuth: true,
+            title: '工作台',
+            icon: 'fab fa-behance-square',
+            isActive: true
+        }
     }
 }
 

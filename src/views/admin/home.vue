@@ -81,6 +81,11 @@ const cards = ref<ICard[]>([
 export default {
     route: {
         name: 'admin-home',
+        meta: {
+            isMenu: true,
+            title: '工作台',
+            isActive: true
+        }
     }
 }
 
