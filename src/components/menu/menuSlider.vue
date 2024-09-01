@@ -48,8 +48,6 @@ const store = useRouterStore();
 const menuList: any = store.routerList;
 const router = useRouter();
 
-console.log('menuList', menuList)
-
 const handleClick = (name: string, cMenu: RouteRecordRaw) => {
     router.push({ name: name });
     store.handleChildChangeMenu(cMenu);

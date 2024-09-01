@@ -7,6 +7,11 @@ const routes = [
     component: () => import("@/views/home.vue"),
     meta: { requiresAuth: true },
   },
+  {
+    path: "/:catchAll(.*)*",
+    name: "error",
+    component: () => import("@/views/error.vue"),
+  },
 ] as RouteRecordRaw[];
 
 export default routes;
