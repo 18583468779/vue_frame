@@ -10,17 +10,22 @@
             <span class="ml-1 text-sm text-gray-600">{{ useInfoState?.data.name }}</span>
             <section
                 class="group-hover:block absolute top-full bg-white shadow-sm px-3 whitespace-nowrap border rounded-sm hidden">
-                <div class="flex items-center cursor-pointer border-b py-3">
+                <div class="word">
                     <a class="fas fa-ad text-gray-600"></a>
-                    <span class="text-xs text-gray-600 ml-2">个人中心</span>
+                    <span>个人中心</span>
                 </div>
-                <div class="flex items-center cursor-pointer border-b py-3">
+                <div class="word">
                     <a class="fas fa-ad text-gray-600"></a>
-                    <span class="text-xs text-gray-600 ml-2">返回首页</span>
+                    <span>返回首页</span>
                 </div>
-                <div class="flex items-center cursor-pointer border-b py-3">
-                    <a class="fas fa-ad text-gray-600"></a>
-                    <span class="text-xs text-gray-600 ml-2">退出登录</span>
+                <div class="word">
+                    <a class="fas fa-sign-out text-gray-600"></a>
+                    <el-popconfirm title="确认退出登录吗？" @confirm="handleRemoveUserInfo" confirm-button-text="确认"
+                        cancel-button-text="取消">
+                        <template #reference>
+                            <span>退出登录</span>
+                        </template>
+                    </el-popconfirm>
                 </div>
             </section>
         </div>
@@ -31,11 +36,19 @@
 
 <script lang="ts" setup>
 import { useUserStore } from '@/store/useUserStore';
+const { useInfoState, handleRemoveUserInfo } = useUserStore();
 
 
-const { useInfoState } = useUserStore();
-console.log(useInfoState)
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.word {
+    @apply flex items-center cursor-pointer border-b py-3;
+
+    span {
+        @apply text-xs text-gray-600 ml-2 hover:text-violet-600;
+
+    }
+}
+</style>

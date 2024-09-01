@@ -22,4 +22,8 @@ export default {
     }
     return null;
   },
+  remove(key: string) {
+    // 删除token
+    localStorage.removeItem(key);
+  },
 };

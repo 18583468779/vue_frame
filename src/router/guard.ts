@@ -1,4 +1,5 @@
 import { useUserStore } from "@/store/useUserStore";
+import { Token } from "@/utils/commonVar";
 import store from "@/utils/store";
 import { Router } from "vue-router";
 
@@ -13,7 +14,7 @@ export class Guard {
     if (this.token()) return handleGetUserInfo();
   }
   private token() {
-    return store.get("token")?.token;
+    return store.get(Token.USER_TOKEN)?.token;
   }
   private run() {
     this.router.beforeEach(async (to) => {
