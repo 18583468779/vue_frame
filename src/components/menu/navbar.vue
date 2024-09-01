@@ -14,8 +14,8 @@
                     <a class="fas fa-ad text-gray-600"></a>
                     <span>个人中心</span>
                 </div>
-                <div class="word">
-                    <a class="fas fa-ad text-gray-600"></a>
+                <div class="word" @click="handleToPage('home')">
+                    <a class="fa-solid fa-arrow-left text-gray-600"></a>
                     <span>返回首页</span>
                 </div>
                 <div class="word">
@@ -36,9 +36,14 @@
 
 <script lang="ts" setup>
 import { useUserStore } from '@/store/useUserStore';
+import { useRouter } from 'vue-router';
 const { useInfoState, handleRemoveUserInfo } = useUserStore();
 
+const router = useRouter();
 
+const handleToPage = (name: string) => {
+    router.push({ name: name })
+}
 </script>
 
 
