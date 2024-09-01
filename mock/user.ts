@@ -13,7 +13,7 @@ export default [
         data: {
           name: "刘德华",
           age: 18,
-          avatar: "/avatar/xj.jpg",
+          avatar: "/public/image/avatar.jpg",
         },
       };
     },

@@ -26,3 +26,8 @@ declare module "*.json" {
   const value: any;
   export default value;
 }
+interface User {
+  name: string;
+  age: number;
+  avatar: string;
+}

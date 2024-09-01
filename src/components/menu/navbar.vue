@@ -6,8 +6,8 @@
             <el-breadcrumb-item>定义菜单 </el-breadcrumb-item>
         </el-breadcrumb>
         <div class="flex justify-center items-center gap-2 relative cursor-pointer group">
-            <img src="/public/image/avatar.jpg" alt="avatar" class="w-10 h-10 rounded-full object-cover">
-            <span class="ml-1 text-sm text-gray-600">用户一号</span>
+            <img :src="useInfoState?.data.avatar" alt="avatar" class="w-10 h-10 rounded-full object-cover">
+            <span class="ml-1 text-sm text-gray-600">{{ useInfoState?.data.name }}</span>
             <section
                 class="group-hover:block absolute top-full bg-white shadow-sm px-3 whitespace-nowrap border rounded-sm hidden">
                 <div class="flex items-center cursor-pointer border-b py-3">
@@ -29,7 +29,13 @@
 </template>
 
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useUserStore } from '@/store/useUserStore';
+
+
+const { useInfoState } = useUserStore();
+console.log(useInfoState)
+</script>
 
 
 <style lang="scss" scoped></style>
